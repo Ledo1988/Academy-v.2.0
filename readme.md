@@ -30,24 +30,20 @@
     - [x] Хеши проставляются и настроено автоматическое обновление страницы (*hot reload*). 
     - [x] `webpack.config.js` не содержит ошибок и корректно оформлен.
           
-      *Серьёзных ошибок нет. Но есть небольшие помарки в оформлении:
-      > const path = require('path')
-	  >
-      > const HtmlWebpackPlugin = require('html-webpack-plugin')
-	  >
-      > const WebpackMd5Hash = require('webpack-md5-hash')
-	  >
-      > const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-	  >
-      > ~~const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')~~
-	  >
-      > const webpack = require('webpack')
-      
+      *Серьёзных ошибок нет. Но есть небольшие помарки в оформлении.
+     
       При объявлении переменных в конце строки следует ставить знак ";"
-      Переменная объявлена, но не используется
-      > module.exports = {...}
-    
+        Переменная объявлена, но не используется
+      >     const path = require('path')
+      >     const HtmlWebpackPlugin = require('html-webpack-plugin')
+      >     const WebpackMd5Hash = require('webpack-md5-hash')
+      >     const MiniCssExtractPlugin = require('mini-css-extract-plugin')	  >
+      >     //const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+	  >     const webpack = require('webpack')
+      
       В конце объявления условий module.exports также же следует ставить знак ";"
+      >     module.exports = {...}    
+      
 - [x] Настроен Babel
 - [x] PostCSS установлен и настроен для минификации CSS-кода и простановки вендорных префиксов. 
 - [x] Плагины корректно устанавливаются.
@@ -60,19 +56,14 @@
   - [x] `Package.json` содержит всю необходимую информацию
         
     *Для оптимизации дальнейшего использования package.json желательно не оставлять пустых полей
-    >  "repository": {
+    >       "repository": {
+    >             "type": "git",
+    >             "url": ""
+    >           },
     >
-    >  "type": "git",
-    >
-    >    "url": ""
-    >
-    >    },
-    >
-    >    "bugs": {
-    >
-    >    "url": ""
-    >
-    >    }
+    >       "bugs": {
+    >           "url": ""
+    >       }
         
 	Подробнее в спецификации https://docs.npmjs.com/files/package.json    
   - [ ] `.gitignore` содержит все необходимые каталоги и файлы
@@ -94,17 +85,108 @@
 
 ## HTML и CSS
 - [ ] Именование классов и структура файлов сделаны по БЭМ. Отсутствуют ошибки в БЭМ-нейминге сущностей.
-    *Нет привязки к родительскому элементу
-    ><div class="root__section">
-       <header class="header">
-         <div class="menu">
+    
+    *Отсуствует блок `"root"`, поэтому элемент `"root__section"` использовать нельзя.
+    Лучше сменить нейминг и превратить `"root__section"` в `"root"`.
+    Элементы переминованного блока `"root"` необходимо связать  с ним дополнительными классами (например, `"root__header"`).
+    >
+		<div class="root__section">
+		   <header class="header">
+	
+	Блок и элемент не связаны классом
+	>
+           <header class="header">
+             <div class="menu">	 
+    
+    `"header__title-wrapper"` обёртка только для элемента `"header__title"`, необходимо переименовать, так как внутри `"header__title-wrapper"` содержатся и другие элементы.         
+	>  
+        <div class="header__title-wrapper">
+                <h1 class="header__title">Что в мире творится?</h1>
+                <h3 class="header__subtitle">Находите самые свежие статьи на любую тему
+                  и сохраняйте в своём личном кабинете.     
+    `"circle-preloader"` нейминг не связывает элемент с блоком
+    >   
+        <section class=preloader>
+         <div class="preloader__message" id="preloader-searching">
+           <i class="circle-preloader"></i>
+           
+    Блок и элемент не связаны классом
+    >   
+        <div class="results__news">
+          <a href="#" class="card">           
+    
+    Неверный нейминг (одно нижнее подчёркивание вместо двух)
+    >   
+        <div class="card_image-wrapper">
+    
+    Неверный нейминг в блоке `card_wrapper` (одно нижнее подчёркивание вместо двух, взаимосвязь элементов) 
+    >   
+       <div class="card_wrapper">
+           <p class="card_date">2 августа, 2019</p>   
 - [ ] БЭМ файловая структура не содержит ошибок.
 - [ ] Мета-элементы не содержат ошибок.
 - [ ] Проект адаптирован под различные разрешения экрана. Горизонтальный скролл не должен возникать на разрешениях от 320 пикселей и больше. Скрывать полосу прокрутки свойством `overflow: hidden` нельзя.
 - [ ] Отзывчивая вёрстка, которая корректно тянется на всех промежуточных разрешениях.
 - [ ] Корректно работают ссылки на внешние ресурсы: ни одна ссылка не ведёт в пустоту или на якорь, внешние ссылки открываются в новой вкладке. 
 - [ ] В коде используется семантическая разметка: применяются семантические теги, выбор элементов при вёрстке корректен (параграф должен быть параграфом, список — списком); структура DOM-дерева состоит не только из контейнеров div.
-- [ ] Нету лишних DIV-оберток.
+    
+     Для использования формы следует заменить тег `div` на  `form` 
+                 
+    >   
+        <div class="header__form">   
+    `section` существует вне блока `main`. Класс указывается в "". 
+    >   
+        <section class=preloader> 
+        ...
+        <section class="about results__about">
+    Не следует использовать теги заголовков (h4,h5) для системных ответов на запросы.
+   
+    >   
+        <section class=preloader>
+         <div class="preloader__message" id="preloader-searching">
+           <i class="circle-preloader"></i>
+           <h5 class="preloader__subtitle">Идет поиск новостей...</h5>
+         </div>
+         <div class="preloader__message preloader__hide" id="preloader-not-found">
+           <img class="preloader__icon" src="./images/not-found.svg" alt="no">
+           <h4 class="preloader__title">Ничего не найдено</h4>
+           <h5 class="preloader__subtitle">К сожалению по вашему запросу ничего не найдено.</h5>
+         </div>
+       </section>    
+    На странице отстуствует h1, поэтому использовать h3 несемантично
+    >   
+        <main class="results">
+            <h3 class="results__title">Результаты поиска</h3> 
+    В данном случае изображение является частью контента страницы, необходимо поместить его в html-код
+    >   
+        <div class="card_image-wrapper">
+                <div class="card_img"></div>
+              </div>
+    Связанные элементы следует помещать в одну обёртку
+    >   
+        <div class="card__icon"></div>
+        <p class="card__warning">Войдите, чтобы сохранять статьи</p> 
+    Текст из нескольких параграфов лучше оборачивать в div или article, а внутри разбивать на параграфы 
+     >      <p class="card_text">It is a long  ...              
+    Для кратких текстовых вставок (строчных элементов) желательно использовать `span` вместо `p`
+    Пример:
+    >       <p class="card_src">lipsum.com</p> 
+    Отсутствует тип кнопки
+    >       <button class="button results__button">Показать еще</button>
+    
+    У ссылок не класса
+    >   
+        <ul class="footer__menu">
+          <li class="footer__menu-item"><a href="./">      
+    Неверный нейминг элементов относительно блока
+    >   
+        <p class="footer__links">
+           <a href="#" class="footer__social-icon" target="_blank">      
+- [ ] Нет лишних DIV-оберток.
+    Лишняя DIV-обертка.
+    >   
+        <section class="about results__about">
+          <div>
 - [ ] Кнопки, инпуты и ссылки реализованы во всех состояниях 
 - [ ] Элементы формы должны выделяться, когда на них установлен фокус.
 - У формы должны быть:
