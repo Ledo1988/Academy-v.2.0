@@ -24,14 +24,9 @@
     - [ ] Локальный сервер установлен и настроен.
           Ошибка в команде вызова dev-бандла:    		  
       > "scripts": {
-                                                                                                            >
-      > "build": "rimraf dist && webpack --mode production",
-                                                                                                            >
-      > "dev": "~~NODE_ENV=development~~ webpack-dev-server --mode development --open --watch",
-                                                                                                            >
-      > "pages": "gh-pages -d dist"
-                                                                                                            >
-      > },    		  
+	  > ...       
+	  > "dev": "~~NODE_ENV=development~~ webpack-dev-server --mode development --open --watch",
+      > ...},    		  
     - [x] Хеши проставляются и настроено автоматическое обновление страницы (*hot reload*). 
     - [x] `webpack.config.js` не содержит ошибок и корректно оформлен.
           Серьёзных ошибок нет. Но есть небольшие помарки в оформлении:
