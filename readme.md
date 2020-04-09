@@ -17,7 +17,7 @@
 *Вы можете включать ссылки на ресурсы, абстрактные примеры кода*
 
 ## Инфраструктура и Git
-- [ ] Вебпак настроен:
+- [x] Вебпак настроен:
     - [x] собирает проект.
     - [x] деплоит сайт на GitHub Pages. 
     - [x] переменные окружения запрещены, проект собирается и запускается на любой OC после установки необходимых npm-зависимостей.
@@ -28,8 +28,21 @@
       > "dev": "~~NODE_ENV=development~~ webpack-dev-server --mode development --open --watch",
       > "pages": "gh-pages -d dist"
       > },    		  
-    - [ ] Хеши проставляются и настроено автоматическое обновление страницы (*hot reload*). 
-    - [ ] `webpack.config.js` не содержит ошибок и корректно оформлен.
+    - [x] Хеши проставляются и настроено автоматическое обновление страницы (*hot reload*). 
+    - [x] `webpack.config.js` не содержит ошибок и корректно оформлен.
+          Серьёзных ошибок нет. Но есть небольшие помарки в оформлении:
+      > const path = require('path')
+      > const HtmlWebpackPlugin = require('html-webpack-plugin')
+      > const WebpackMd5Hash = require('webpack-md5-hash')
+      > const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+      > ~~const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')~~
+      > const webpack = require('webpack')
+      
+      При объявлении переменных в конце строки следует ставить знак ";"
+      Переменная объявлена, но не использыется
+      > module.exports = {...}
+    
+      В конце объявления условий module.exports также же следует ставить знак ";"
 - [ ] Настроен Babel
 - [ ] PostCSS установлен и настроен для минификации CSS-кода и простановки вендорных префиксов. 
 - [ ] Плагины корректно устанавливаются.
