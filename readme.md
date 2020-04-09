@@ -122,14 +122,24 @@
     Неверный нейминг в блоке `card_wrapper` (одно нижнее подчёркивание вместо двух, взаимосвязь элементов) 
     >   
        <div class="card_wrapper">
-           <p class="card_date">2 августа, 2019</p>   
+           <p class="card_date">2 августа, 2019</p>  
+    У ссылок нет класса
+    >   
+        <ul class="footer__menu">
+          <li class="footer__menu-item"><a href="./">      
+    Неверный нейминг элементов относительно блока
+    >   
+        <p class="footer__links">
+           <a href="#" class="footer__social-icon" target="_blank">        
 - [ ] БЭМ файловая структура не содержит ошибок.
+    
     *В блок не могут быть вложены другие блоки (блок `main`).
+    
     Папка для модификатора `menu__logout-black` названа неверно
 - [x] Мета-элементы не содержат ошибок.
     *Нежелательно ограничивать действия пользователя свойством `user-scalable=no`
     >   
-        <meta name="viewport"↩        content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 - [ ] Проект адаптирован под различные разрешения экрана. Горизонтальный скролл не должен возникать на разрешениях от 320 пикселей и больше. Скрывать полосу прокрутки свойством `overflow: hidden` нельзя.
 - [x] Отзывчивая вёрстка, которая корректно тянется на всех промежуточных разрешениях.
 - [ ] Корректно работают ссылки на внешние ресурсы: ни одна ссылка не ведёт в пустоту или на якорь, внешние ссылки открываются в новой вкладке.
@@ -189,14 +199,7 @@
     >   
         <button class="button results__button">Показать еще</button>
     
-    У ссылок не класса
-    >   
-        <ul class="footer__menu">
-          <li class="footer__menu-item"><a href="./">      
-    Неверный нейминг элементов относительно блока
-    >   
-        <p class="footer__links">
-           <a href="#" class="footer__social-icon" target="_blank">      
+          
 - [ ] Нет лишних DIV-оберток.
     Лишняя DIV-обертка.
     >   
